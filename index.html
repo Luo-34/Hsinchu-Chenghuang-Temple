@@ -1,23 +1,167 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>我的第一個 GitHub 網站</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #336699;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="description" content="新竹都城隍廟一日遊，附近周邊美食。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0>
+    <meta name="author" content="苗栗高商">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>新竹都城隍廟介紹</title>
+    <style>
+        body {
+            background-color: #FFFFCC;
+            color: #003366;
+            font-family: 'Roboto', Arial;
+            margin : 0;
+        }
+    </style>
 </head>
-<body>
-  <h1>👋 哈囉，歡迎來到我的網站！</h1>
-  <p>這是我用 GitHub Pages 架設的第一個網站 🎉</p>
+
+<header>
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" rel="stylesheet">
+    <h1>-Hsinchu Chenghuang Temple-</h1>
+    <h2>-新竹都城隍廟-</h2>    
+    <style>
+        h1 {
+            font-family: Impact, fantasy;
+            line-height: 01;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 300;
+            cursor: pointer;
+            font-size: clamp(45px, 2vw, 60px);
+        }
+        h1:hover {
+            color: #687b8d;
+        }
+        h1:active{
+            color: #b2bacc;
+        }
+        h2 {
+            font-family: 'cwTeXYen', sans-serif;
+            line-height: 0.2;
+            text-align: center;
+            font-weight: 300;
+            cursor: pointer;
+            font-size: clamp(30px, 2vw, 40px);
+        }
+        h2:hover {
+            color: #687b8d;
+        }
+        h2:active{
+            color: #b2bacc;
+        }
+    </style>
+</header>
+
+<body style="padding-top: 10px;">
+    <nav>
+        <button class="hamburger" onclick="toggleMenu()">☰ 選單</button>
+
+        <ul class="menu" id="menu">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="introduction.html#introduction">廟宇介紹</a></li>
+            <li><a href="food.html#food">周邊美食</a></li>
+            <li><a href="map.html#map">地圖</a></li>
+            <li><a href="contact.html#contact">聯絡我們</a></li>
+        </ul>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            nav {
+                background-color: #333;
+                font-family: 'cwTeXYen', sans-serif;
+                transition: all 0.3s ease;
+                transition: top 0.3s ease, background-color 0.3s ease;
+            }
+            nav.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .menu {
+                list-style: none;
+                margin: 0 auto;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .menu li {
+                position: relative;
+            }
+
+            .menu li a {
+                display: block;
+                padding: 15px 20px;
+                color: white;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+
+            .menu li a:hover {
+                background-color: #555;
+            }
+
+            .hamburger {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 26px;
+                color: white;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+
+            @media (max-width: 768px) {
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    background-color: #333;
+                    width: 100%;
+                }
+
+                .menu.show {
+                    display: flex;
+                }
+
+                .hamburger {
+                    display: block;
+                }
+
+                nav {
+                    padding: 0;
+                }
+            }
+        </style>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+    <script>
+        const nav = document.querySelector('nav');
+        const navOffsetTop = nav.offsetTop;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= navOffsetTop) {
+                nav.classList.add('fixed');
+            } else {
+                nav.classList.remove('fixed');
+            }
+        });
+    </script>
 </body>
-</html>
