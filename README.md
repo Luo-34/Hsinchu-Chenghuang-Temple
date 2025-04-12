@@ -1,1 +1,0 @@
-# Hsinchu-Chenghuang-Temple
