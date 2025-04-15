@@ -1,0 +1,41 @@
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<h2>新竹都城隍廟-地圖位置<br>Hsinchu Chenghuang Temple map location</h2>
+<div id="map" style="height: 800; width: 100%; border-radius: 10px;"></div>
+
+<script>
+  const map = L.map('map').setView([24.8045, 120.9697], 17);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap 貢獻者'
+  }).addTo(map);
+
+  L.marker([24.8045, 120.9697])
+    .addTo(map)
+    .bindPopup('目前位置<br>Hsinchu City God Temple')
+    .openPopup();
+</script>
+
+<button onclick="history.back()">← 返回上一頁</button>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+  
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+  
