@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="新竹都城隍廟一日遊，附近周邊美食。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="苗栗高商">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>新竹都城隍廟-周邊美食</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #003366;
+            font-family: 'Roboto', Arial;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: Impact, fantasy;
+            text-align: center;
+            font-size: clamp(45px, 2vw, 60px);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #messages {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card small {
+            color: #777;
+            display: block;
+            margin-top: 10px;
+        }
+
+        #count {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>-周邊美食-</h1>
+    <button onclick="history.back()">👈 返回上一頁</button>
+
+    <div id="count">載入中...</div>
+    <div id="messages"></div>
+
+    <script>
+        fetch("https://script.google.com/macros/s/AKfycbwJyvvwykLsqzHZ37TCqQrJ7A4X1KLYPDB01bsotRv9gx3W-sBLqVMAJzJQ0PngO_F3TQ/exec")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('messages');
+                const count = document.getElementById('count');
+                count.innerText = `目前共有 ${data.length} 則留言`;
+
+                data.reverse().forEach(entry => {
+                    const div = document.createElement('div');
+                    div.className = "card";
+                    div.innerHTML = `
+                        <strong>暱稱：</strong> ${entry.nickname || "匿名"}<br>
+                        <strong>品質與口味⭐：</strong> ${entry.quality || "未填寫"}<br>
+                        <strong>喜歡的產品：</strong> ${entry.favorite || "未填寫"}<br>
+                        <strong>留言：</strong> ${entry.message || "（無）"}<br>
+                        <small>${new Date(entry.timestamp).toLocaleString('zh-TW')}</small>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => {
+                document.getElementById('count').innerText = "載入留言時發生錯誤 😥";
+                console.error("留言載入錯誤：", error);
+            });
+    </script>
+</body>
+</html>
